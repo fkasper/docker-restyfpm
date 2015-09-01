@@ -20,9 +20,9 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 RUN ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/error.log
 
 ONBUILD COPY sites-enabled /etc/nginx/sites-enabled
- 
-RUN mkdir /app
-VOLUME /app
+
+ONBUILD RUN mkdir /app
+ONBUILD VOLUME /app
 
 
 CMD ["/usr/bin/supervisord"]
